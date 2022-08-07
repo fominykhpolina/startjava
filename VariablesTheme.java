@@ -69,9 +69,9 @@ public class VariablesTheme {
         System.out.println("Способ перестановки с помощью арифметических действий:");
         System.out.println("Исходное значение переменной digit1: " + digit1);
         System.out.println("Исходное значение переменной digit2: " + digit2);
-        digit1 = digit1 + digit2;
+        digit1 += digit2;
         digit2 = digit1 - digit2;
-        digit1 = digit1 - digit2;
+        digit1 -= digit2;
         System.out.println("Новое значение переменной digit1: " + digit1);
         System.out.println("Новое значение переменной digit2: " + digit2);
         System.out.println("Способ перестановки с помощью побитовых операций:");
@@ -84,16 +84,21 @@ public class VariablesTheme {
         System.out.println("Новое значение переменной digit2: " + digit2);
 
         System.out.println("\n6. Вывод символов и их кодов");
+        int numberOfSymbol1 = 35;
+        int numberOfSymbol2 = 38;
+        int numberOfSymbol3 = 64;
+        int numberOfSymbol4 = 94;
+        int numberOfSymbol5 = 95;
         char symbol1 = 35;
         char symbol2 = 38;
         char symbol3 = 64;
         char symbol4 = 94;
         char symbol5 = 95;
-        System.out.println(symbol1);
-        System.out.println(symbol2);
-        System.out.println(symbol3);
-        System.out.println(symbol4);
-        System.out.println(symbol5);
+        System.out.println(numberOfSymbol1 + " - " + symbol1);
+        System.out.println(numberOfSymbol2 + " - " + symbol2);
+        System.out.println(numberOfSymbol3 + " - " + symbol3);
+        System.out.println(numberOfSymbol4 + " - " + symbol4);
+        System.out.println(numberOfSymbol5 + " - " + symbol5);
 
         System.out.println("\n7. Произведение и сумма цифр числа");
         int count = 345;
