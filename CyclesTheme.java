@@ -25,13 +25,13 @@ public class CyclesTheme {
         if (num2 > num3) {
             maxNum = num2;
         }
-        if (num4 > maxNum) {
-            maxNum = num4;
-        }
         if (num3 < num2) {
             minNum = num3;
         } 
-        if (num4 < minNum) {
+        if (num4 > maxNum) {
+            maxNum = num4;
+        } 
+        else if (num4 < minNum) {
             minNum = num4;
         }
         for (int i = maxNum - 1; i > minNum; i--) {
@@ -42,25 +42,24 @@ public class CyclesTheme {
         int num5 = 1234;
         int sumDigits = 0;
         while (num5 > 0) {
-            int digit;
-            digit = num5 % 10;
-            System.out.print(digit);
+            int lastDigit = num5 % 10;
+            System.out.print(lastDigit);
             num5 /= 10;
-            sumDigits += digit; 
+            sumDigits += lastDigit; 
         } 
         System.out.println(" " + sumDigits);
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        int digitCount = 0;
+        int countDigits = 0;
         for (int i = 1; i < 24; i += 2) {
-             digitCount++;
+             countDigits++;
              System.out.printf("%5s", i);
-             if (digitCount == 5) {
-                 digitCount = 0;
+             if (countDigits == 5) {
+                 countDigits = 0;
                  System.out.println();
              }
         }
-        for (digitCount++; digitCount <= 5; digitCount++) {
+        for (countDigits++; countDigits <= 5; countDigits++) {
             System.out.printf("%5s", "0");
         }
 
@@ -128,10 +127,10 @@ public class CyclesTheme {
         int num9 = 1234321;
         int copyNum9 = num9;
         int reverseNum = 0;
-        int lastDigit; 
+        int lastDigit1; 
         while (num9 > 0) {
-            lastDigit = num9 % 10;
-            reverseNum = (reverseNum * 10) + lastDigit;
+            lastDigit1 = num9 % 10;
+            reverseNum = (reverseNum * 10) + lastDigit1;
             num9 /= 10;
         }
         if (reverseNum != copyNum9) {
@@ -143,16 +142,16 @@ public class CyclesTheme {
         System.out.println("\n9. Определение, является ли число счастливым");
         int sumDEF = 0;
         int sumABC = 0;
-        int lastDigit1 = 0;
+        int lastDigit2 = 0;
         int digitCount2 = 0;
         for (int num10 = 700348; num10 > 0; num10 /= 10) {
-            lastDigit1 = num10 % 10;
-            System.out.print(lastDigit1);
+            lastDigit2 = num10 % 10;
+            System.out.print(lastDigit2);
             digitCount2++;
             if(digitCount2 >= 1 && digitCount2 <= 3) {
-                sumDEF += lastDigit1;
+                sumDEF += lastDigit2;
             } else {
-                sumABC += lastDigit1;
+                sumABC += lastDigit2;
             }
         } 
         if (sumDEF == sumABC) {
@@ -171,7 +170,7 @@ public class CyclesTheme {
                     System.out.print("| ");
                 } 
             } 
-        System.out.println("");
+            System.out.println();
             if (j == 1) {
                 System.out.println("------------------------------------");
             }
