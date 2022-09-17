@@ -1,33 +1,25 @@
 public class Calculator {
 
     public static void main(String[] args) {
-        int number1 = 2;
-        int number2 = 7;
-        int copyNumber2 = number2;
+        int num1 = 2;
+        int num2 = 7;
         char sign = '*';
         int result = 1;
         if (sign == '+') {
-            result = number1 + number2;
-        }
-        if (sign == '-') {
-            result = number1 - number2;
-        }
-        if (sign == '*') {
-            result = number1 * number2;
-        }
-        if (sign == '/') {
-            result = number1 / number2;
-        }
-        if (sign == '%') {
-            result = number1 % number2;
-        }
-        if (sign == '^') {
-            for(; copyNumber2 > 0; copyNumber2--) {
-            result = result * number1;
+            result = num1 + num2;
+        } else if (sign == '-') {
+            result = num1 - num2;
+        } else if (sign == '*') {
+            result = num1 * num2;
+        } else if (sign == '/') {
+            result = num1 / num2;
+        } else if (sign == '%') {
+            result = num1 % num2;
+        } else if (sign == '^') {
+            for(; num2 > 0; num2--) {
+                result *= num1;
             }
         }
-        System.out.println(number1 + " " + sign + " " + number2 + " = " + result);
-
+        System.out.println(num1 + " " + sign + " " + num2 + " = " + result);
     }
 }
-
