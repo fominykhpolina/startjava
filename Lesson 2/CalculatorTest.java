@@ -13,16 +13,13 @@ public class CalculatorTest {
             calculator.setSign(scanner.next().charAt(0));
             System.out.println("Введите второе число: ");
             calculator.setNum2(scanner.nextInt());
-            System.out.println("Результат: " + calculator.getResult());
+            System.out.println("Результат: " + calculator.calculate());
             System.out.println("Вы хотите продолжить вычисления? [yes/no]");
             answer = scanner.next();
             while (!answer.equals("yes") && !answer.equals("no")) {
-                System.out.println("Неккоректный ввод");
+                System.out.println("Некорректный ввод");
                 System.out.println("Вы хотите продолжить вычисления? [yes/no]");
                 answer = scanner.next();
-            }
-            if (answer.equals("no")) {
-                    break;
             }
         }
     }
