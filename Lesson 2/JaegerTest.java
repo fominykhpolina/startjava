@@ -2,8 +2,7 @@ public class JaegerTest {
 
     public static void main(String[] args) {
         Jaeger jaeger1 = new Jaeger();
-        Jaeger jaeger2 = new Jaeger("Gipsy Danger", 1.980f, 10);
-
+    
         jaeger1.setModelName("Cherno Alpha");
         jaeger1.setStrenght(10);
         jaeger1.setWeight(2.412f);
@@ -13,6 +12,7 @@ public class JaegerTest {
         System.out.println("Робот 1: " + jaeger1.getWeight());
         jaeger1.useVortexCannon();
 
+        Jaeger jaeger2 = new Jaeger("Gipsy Danger", 1.980f, 10);
         System.out.println("Робот 2: " + jaeger2.getModelName());
         System.out.println("Робот 2: " + jaeger2.getStrenght());
         System.out.println("Робот 2: " + jaeger2.getWeight());
