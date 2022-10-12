@@ -4,17 +4,25 @@ public class GuessNumberTest {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Имя первого игрока:");
         Player player1 = new Player(scanner.next());
-        GuessNumber guessNumber = new GuessNumber();
-   
-        //System.out.println("Имя второго игрока:");
-       //Player player2 = new Player(scanner.next());
 
-        System.out.println(player1.getName() + " введите число:");
-        player1.setNumber(scanner.nextInt());
+        System.out.println("Имя второго игрока:");
+        Player player2 = new Player(scanner.next());
 
-        guessNumber.play();
+        GuessNumber guessNumber = new GuessNumber(player1, player2);
 
+        String answer = "yes";
+        while (answer.equals("yes")) {
+            guessNumber.play();
+            System.out.println("Вы хотите продолжить вычисления? [yes/no]");
+            answer = scanner.next();
+            while (!answer.equals("yes") && !answer.equals("no")) {
+                System.out.println("Некорректный ввод");
+                System.out.println("Вы хотите продолжить вычисления? [yes/no]");
+                answer = scanner.next();
+            }
+        }
     }
 }
