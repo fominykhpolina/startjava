@@ -12,7 +12,7 @@ public class ArrayTheme {
         deleteNums();
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        printLetters();
+        printAlphabet();
 
         System.out.println("\n\n5. Генерация уникальных чисел");
         generateNums();
@@ -20,44 +20,46 @@ public class ArrayTheme {
         System.out.println("\n\n6. Сдвиг элементов массива");
         changeLetters();
     }
-    public static void reverseNums() {
-        int[] nums = {1, 3, 4, 7, 5, 2, 6};
+
+    private static void reverseNums() {
+        int[] nums = {1, 7, 4, 5, 2, 6, 3};
         int length = nums.length;
+        System.out.print("До реверса: ");
         printNums(nums);
         System.out.println();
         for (int i = 0; i < length; i++) {
             int temp = nums[--length];
             nums[length] = nums[i];
             nums[i] = temp;
-        }
+        }System.out.print("После реверса: ");
         printNums(nums);
     }
 
-    public static void multiplyNums() {
-        int[] arrayMultipliers = new int[10];
-        int length = arrayMultipliers.length;
+    private static void multiplyNums() {
+        int[] multipliers = new int[10];
+        int length = multipliers.length;
         for (int i = 1; i < length; i++) {
-            arrayMultipliers[i] = i;
+            multipliers[i] = i;
         }
         int product = 1;
-        for (int i = 1; i < (length - 1); i++) {
-            product *= arrayMultipliers[i];
-            System.out.print((arrayMultipliers[i]) + (i != (length -2) ? (" * ") : (" = " + product)));
+        for (int i = 1; i < length - 1; i++) {
+            product *= multipliers[i];
+            System.out.print(multipliers[i] + (i != (length - 2) ? ("*") : (" = " + product)));
         }
     }
 
-    public static void deleteNums() {
+    private static void deleteNums() {
         double[] randomNums = new double[15];
         int length = randomNums.length;
-        int countZeros = 0;
         for (int i = 0; i < length; i++) {
             randomNums[i] = Math.random();
         }
         System.out.println("Исходный массив: ");
         print(randomNums);
+        int countZeros = 0;
+        double middleCellValue = randomNums[length / 2];
         for (int i = 0; i < length; i++) {
-            double averageNum = randomNums[length / 2];
-            if (randomNums[i] > averageNum) {
+            if (randomNums[i] > middleCellValue) {
                 randomNums[i] = 0;
                 countZeros++;
             }
@@ -67,60 +69,54 @@ public class ArrayTheme {
         System.out.println("\nКоличество обнуленных ячеек: " + countZeros);
     }
 
-    public static void printLetters() {
-        char[] letters = new char[26];
-        int length = letters.length;
-        int j = 0;
-        for (char i = 'A'; i <= 'Z'; i++, j++) {
-            letters[j] = i;
+    private static void printAlphabet() {
+        char[] alphabet = new char[26];
+        int length = alphabet.length;
+        for (char i = 0; i < length; i++) {
+            alphabet[i] = (char) ('A' + i);
         }
-        int k = length - 1;
+        int letters = length - 1;
         for (int i = length - 1; i >= 0; i--) {
-            if (i <= k) {
+            if (i <= letters) {
                 System.out.println();
-                k--;
+                letters--;
                 i = length - 1;
             }
-            System.out.print(letters[i] + " ");
+            System.out.print(alphabet[i]);
         }
     }
 
-    public static void generateNums() {
-        int[] randomNums = new int[30];
-        int length = randomNums.length;
-        int lastNum = length - 1;
+    private static void generateNums() {
+        int[] uniqueNums = new int[30];
+        int length = uniqueNums.length - 1;
         int count = 1;
-        int i = 0;
-        while (i <= lastNum) {
-            int randomNum = (int) (Math.random() * 40 + 60);
-            randomNums[i] = randomNum;
+        for(int i = 0; i <= length; i++) {
+            uniqueNums[i] = (int) (Math.random() * 40 + 60);
             if (i != 0) {
-                while (count <= i) {
-                    if (randomNums[i] == randomNums[i - count]) {
-                        randomNum = (int) (Math.random() * 40 + 60);
-                        randomNums[i] = randomNum;
+                for (; i >= count; ) {
+                    if (uniqueNums[i] == uniqueNums[i - count]) {
+                        uniqueNums[i] = (int) (Math.random() * 40 + 60);
                         count = 1;
                     } else {
                         count++;
                     }
                 }
             }
-            i++;
             count = 1;
         }
         int temp1;
-        for (i = length - 1; i >= 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (randomNums[j] < randomNums[j + 1]) {
-                    temp1 = randomNums[j];
-                    randomNums[j] = randomNums[j + 1];
-                    randomNums[j + 1] = temp1;
+        for (int i = length - 1; i >= 0; i--) {
+           for (int j = 0; j < i; j++) {
+                if (uniqueNums[j] < uniqueNums[j + 1]) {
+                    temp1 = uniqueNums[j];
+                    uniqueNums[j] = uniqueNums[j + 1];
+                    uniqueNums[j + 1] = temp1;
                 }
-            } System.out.print(randomNums[i] + " ");
+           } System.out.print(uniqueNums[i] + " ");
         }
     }
 
-    public static void changeLetters() {
+    private static void changeLetters() {
         String[] stringArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
         int length = stringArr.length;
         int count = 0;
