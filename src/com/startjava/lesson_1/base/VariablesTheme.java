@@ -144,6 +144,5 @@ public class VariablesTheme {
         System.out.print(hours + ":");
         System.out.print(minutes + ":");
         System.out.println(seconds);
-       
     }
 }

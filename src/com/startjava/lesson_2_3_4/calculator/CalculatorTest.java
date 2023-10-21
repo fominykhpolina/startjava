@@ -11,20 +11,15 @@ public class CalculatorTest {
         while (answer.equals("yes")) {
             System.out.println("Введите математическое выражение (пример: 2 + 10) : ");
             String str = scanner.nextLine();
-            String[] formula = str.split(" ");
-            calculator.setNum1(Integer.parseInt(formula[0]));
-            calculator.setSign(formula[1]);
-            calculator.setNum2(Integer.parseInt(formula[2]));
-            if (calculator.calculate() % 1 == 0) {
-                System.out.println("Результат: " + (long) calculator.calculate());
-            } else {
-                System.out.println("Результат: " + calculator.calculate());
-            }
-            System.out.println("Вы хотите продолжить вычисления? [yes/no]");
+            calculator.mathExpression = str.split(" ");
+            calculator.setNum1(Integer.parseInt(calculator.mathExpression[0]));
+            calculator.setSign(calculator.mathExpression[1]);
+            calculator.setNum2(Integer.parseInt(calculator.mathExpression[2]));
+            calculator.printResult();
+            System.out.println("\nВы хотите продолжить вычисления? [yes/no]");
             answer = scanner.nextLine();
-            if (!answer.equals("yes") && !answer.equals("no")) {
-                System.out.println("Некорректный ввод");
-                System.out.println("Вы хотите продолжить вычисления? [yes/no]");
+            while (!answer.equals("yes") && !answer.equals("no")) {
+                System.out.println("Некорректный ввод" + "\nВы хотите продолжить вычисления? [yes/no]");
                 answer = scanner.nextLine();
             }
         }
