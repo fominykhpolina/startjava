@@ -1,11 +1,7 @@
 package com.startjava.lesson_2_3_4.calculator;
 
-import java.util.Scanner;
-
 public class Calculator {
 
-    Scanner scanner = new Scanner(System.in);
-    String[] mathExpression = new String[0];
     private double num1;
     private double num2;
     private String sign;
@@ -22,7 +18,11 @@ public class Calculator {
         this.sign = sign;
     }
 
-    public double calculate() {
+    public double calculate(String answer) {
+        String[] mathExpression = answer.split(" ");
+        setNum1(Integer.parseInt(mathExpression[0]));
+        setSign(mathExpression[1]);
+        setNum2(Integer.parseInt(mathExpression[2]));
         switch (sign) {
             case "+":
                 return num1 + num2;
@@ -43,15 +43,5 @@ public class Calculator {
         return Double.MIN_VALUE;
     }
 
-    public void printResult() {
-        double result = calculate();
-        if (result != Double.MIN_VALUE) {
-            if (result % 1 == 0) {
-                System.out.print("Результат: " + (int) result);
-            } else {
-                System.out.printf("Результат: " + "%.3f", result);
-            }
-        }
-    }
 }
 
