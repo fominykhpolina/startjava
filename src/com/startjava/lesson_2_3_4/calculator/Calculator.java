@@ -2,27 +2,15 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    private double num1;
-    private double num2;
-    private String sign;
+    private static double num1;
+    private static double num2;
+    private static String sign;
 
-    public void setNum1(double num1) {
-        this.num1 = num1;
-    }
-
-    public void setNum2(double num2) {
-        this.num2 = num2;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
-    }
-
-    public double calculate(String answer) {
-        String[] mathExpression = answer.split(" ");
-        setNum1(Integer.parseInt(mathExpression[0]));
-        setSign(mathExpression[1]);
-        setNum2(Integer.parseInt(mathExpression[2]));
+    public static double calculate(String expression) {
+        String[] elements = expression.split(" ");
+        num1 = Integer.parseInt(elements[0]);
+        sign = elements[1];
+        num2 = Integer.parseInt(elements[2]);
         switch (sign) {
             case "+":
                 return num1 + num2;
@@ -38,7 +26,6 @@ public class Calculator {
                 return Math.pow(num1, num2);
             default:
                 System.out.print("Ошибка: знак " + sign + " не поддерживается");
-                break;
         }
         return Double.MIN_VALUE;
     }
