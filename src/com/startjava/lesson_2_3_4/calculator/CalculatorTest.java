@@ -13,11 +13,10 @@ public class CalculatorTest {
                 String expression = scanner.nextLine();
                 printResult(Calculator.calculate(expression));
                 System.out.println("\nВы хотите продолжить вычисления? [yes/no]");
-                answer = scanner.nextLine();
             } else {
                 System.out.println("Некорректный ввод" + "\nВы хотите продолжить вычисления? [yes/no]");
-                answer = scanner.nextLine();
             }
+            answer = scanner.nextLine();
         } while (!answer.equals("no"));
     }
 

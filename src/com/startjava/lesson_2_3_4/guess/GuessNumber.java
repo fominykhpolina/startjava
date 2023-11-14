@@ -1,5 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -12,49 +13,79 @@ public class GuessNumber {
         this.player1 = player1;
         this.player2 = player2;
     }
+
     public void play() {
         Random random = new Random();
         int secretNum = random.nextInt(100) + 1;
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println(player1.getName() + " введите число");
+            numberEnter(player1);
             player1.setNumber(scanner.nextInt());
             if (player1.getNumber() == secretNum) {
-                System.out.println("Игрок " + player1.getName() + " угадал число с " + player1.getI() + " попытки");
-                player1.arrayPrint();
-                player2.arrayPrint();
+                printResult(player1);
                 break;
             }
             if (player1.getNumber() > secretNum) {
-                System.out.println("Число " + player1.getNumber() + " больше того, что загадал компьютер");
+                numberGrater(player1);
             } else {
-                System.out.println("Число " + player1.getNumber() + " меньше того, что загадал компьютер");
+                numberLess(player1);
             }
-            if (player1.getI() == 10) {
-                System.out.println("У " + player1.getName() + " закончились попытки");
+            if (player1.getAttemptCount() == 10) {
+                attemptOver(player1);
             }
-
-            System.out.println(player2.getName() + " введите число");
+            numberEnter(player2);
             player2.setNumber(scanner.nextInt());
             if (player2.getNumber() == secretNum) {
-                System.out.println("Игрок " + player2.getName() + " угадал число с " + player2.getI() + " попытки");
-                player1.arrayPrint();
-                player2.arrayPrint();
+                printResult(player2);
                 break;
             }
             if (player2.getNumber() > secretNum) {
-                System.out.println("Число " + player2.getNumber() + " больше того, что загадал компьютер");
-            } else  {
-                System.out.println("Число " + player2.getNumber() + " меньше того, что загадал компьютер");
+                numberGrater(player2);
+            } else {
+                numberLess(player2);
             }
-            if (player2.getI() == 10) {
-                System.out.println("У " + player2.getName() + " закончились попытки");
-                player1.arrayTry();
-                player2.arrayTry();
+            if (player2.getAttemptCount() == 10) {
+                attemptOver(player2);
+                attemptResult();
                 break;
             }
         }
     }
+    public void arrayPrint(int[] personNumber, int attemptCount) {
+        int[] personNumberCopy = Arrays.copyOf(personNumber, attemptCount);
+        for (attemptCount = 0; attemptCount < personNumberCopy.length; attemptCount++) {
+            System.out.print(personNumberCopy[attemptCount] + " ");
+        }
+        System.out.println();
+        attemptCount = 0;
+        Arrays.fill(personNumber, 0, attemptCount, 0);
+    }
 
+    public void printResult(Player player) {
+        System.out.println("Игрок " + player.getName() + " угадал число с " + player.getAttemptCount() + " попытки");
+        arrayPrint(player1.getPersonNumber(), player1.getAttemptCount());
+        arrayPrint(player2.getPersonNumber(), player2.getAttemptCount());
+    }
+
+    public void attemptResult() {
+        player1.arrayTry();
+        player2.arrayTry();
+    }
+
+    public void numberLess(Player player) {
+        System.out.println("Число " + player.getNumber() + " меньше того, что загадал компьютер");
+    }
+
+    public void numberGrater(Player player) {
+        System.out.println("Число " + player.getNumber() + " больше того, что загадал компьютер");
+    }
+
+    public void attemptOver(Player player) {
+        System.out.println("У " + player.getName() + " закончились попытки");
+    }
+
+    public void numberEnter(Player player) {
+        System.out.println(player.getName() + " введите число");
+    }
 }
