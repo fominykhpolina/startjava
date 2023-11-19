@@ -5,17 +5,12 @@ import java.util.Arrays;
 public class Player {
 
     private String name;
-
     private int attemptCount;
-    private int[] personNumber = new int[10];
+    private int[] enteredNumbers;
 
     public Player(String name) {
         this.name = name;
-    }
-
-    public void setNumber(int number) {
-        personNumber[attemptCount] = number;
-        attemptCount++;
+        enteredNumbers = new int[10];
     }
 
     public String getName() {
@@ -27,19 +22,20 @@ public class Player {
     }
 
     public int getNumber() {
-        return personNumber[attemptCount - 1];
+        return enteredNumbers[attemptCount - 1];
     }
 
-    public int[] getPersonNumber() {
-        return personNumber;
+    public void addNumber(int number) {
+        enteredNumbers[attemptCount] = number;
+        attemptCount++;
     }
 
-    public void arrayTry() {
-        int[] personNumberCopy = Arrays.copyOf(personNumber, attemptCount);
-        for(attemptCount = 0; attemptCount < personNumberCopy.length; attemptCount++) {
-            System.out.print(personNumberCopy[attemptCount] + " ");
-        }
-        System.out.println();
+    public void clearArray() {
+        Arrays.fill(enteredNumbers, 0, attemptCount, 0);
         attemptCount = 0;
+    }
+
+    public int[] enterNumbersCopy() {
+        return Arrays.copyOf(enteredNumbers, attemptCount);
     }
 }

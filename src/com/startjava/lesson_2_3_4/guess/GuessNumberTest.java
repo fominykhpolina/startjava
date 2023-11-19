@@ -6,7 +6,6 @@ public class GuessNumberTest {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("У каждого игрока по 10 попыток");
         System.out.println("Имя первого игрока: ");
         Player player1 = new Player(scanner.next());
         System.out.println("Имя второго игрока: ");
@@ -19,7 +18,7 @@ public class GuessNumberTest {
                  System.out.println("Хотите продолжить игру? [yes/no]:");
              } else {
                  System.out.println("Некорректный ввод");
-                 System.out.println("Вы хотите продолжить вычисления? [yes/no]");
+                 System.out.println("Вы хотите продолжить игру? [yes/no]");
              }
              answer = scanner.next();
          } while (!answer.equals("no"));
