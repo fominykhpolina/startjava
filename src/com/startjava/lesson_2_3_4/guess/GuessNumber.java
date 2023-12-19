@@ -8,6 +8,7 @@ public class GuessNumber {
     private Player player1;
     private Player player2;
     private int secretNumber;
+    Scanner scanner = new Scanner(System.in);
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
@@ -19,14 +20,14 @@ public class GuessNumber {
         secretNumber = random.nextInt(100) + 1;
         System.out.println("У каждого игрока по 10 попыток");
         do {
-            if (guessNumbers(player1) || guessNumbers(player2)) {
+            if (guessNumber(player1) || guessNumber(player2)) {
                 break;
             }
         } while (player2.getAttemptCount() < 10);
         endGame();
     }
 
-    private boolean guessNumbers(Player player) {
+    private boolean guessNumber(Player player) {
         enterNumber(player);
         boolean equal = compare(player);
         if (!equal && player.getAttemptCount() >= 10) {
@@ -34,6 +35,11 @@ public class GuessNumber {
             return equal;
         }
         return equal;
+    }
+
+    private void enterNumber(Player player) {
+        System.out.println(player.getName() + " введите число");
+        player.addNumber(scanner.nextInt());
     }
 
     private boolean compare(Player player) {
@@ -50,22 +56,16 @@ public class GuessNumber {
         return false;
     }
 
-    private void enterNumber(Player player) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(player.getName() + " введите число");
-        player.addNumber(scanner.nextInt());
-    }
-
     private void endGame() {
         printResult(player1);
         printResult(player2);
         System.out.println();
-        player1.clearArray();
-        player2.clearArray();
+        player1.clear();
+        player2.clear();
     }
 
     private void printResult(Player player) {
-        int[] enteredNumbers = player.enterNumbersCopy();
+        int[] enteredNumbers = player.getAllNumbers();
         for (int number : enteredNumbers) {
             System.out.print(number + " ");
         }

@@ -30,12 +30,12 @@ public class Player {
         attemptCount++;
     }
 
-    public void clearArray() {
-        Arrays.fill(enteredNumbers, 0, attemptCount, 0);
-        attemptCount = 0;
+    public int[] getAllNumbers() {
+        return Arrays.copyOf(enteredNumbers, attemptCount);
     }
 
-    public int[] enterNumbersCopy() {
-        return Arrays.copyOf(enteredNumbers, attemptCount);
+    public void clear() {
+        Arrays.fill(enteredNumbers, 0, attemptCount, 0);
+        attemptCount = 0;
     }
 }
