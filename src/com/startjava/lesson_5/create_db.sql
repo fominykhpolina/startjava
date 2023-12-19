@@ -12,5 +12,5 @@ CREATE TABLE jaegers (
 	kaijuKill 	INTEGER
 );
 
---\ir 'init_db.sql'
---\ir 'queries.sql'
+\ir 'init_db.sql'
+\ir 'queries.sql'
