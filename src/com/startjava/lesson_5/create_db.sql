@@ -1,15 +1,17 @@
 \c robots;
 
+DROP TABLE jaegers;
+
 CREATE TABLE jaegers (
 	id			SERIAL PRIMARY KEY,
-	modelName   TEXT,
+	model_name   TEXT,
 	mark		CHAR(6),
 	height		INTEGER,
 	weight		NUMERIC,
 	status		TEXT,
 	origin		TEXT,
 	launch		INTEGER,
-	kaijuKill 	INTEGER
+	kaiju_kill 	INTEGER
 );
 
 \ir 'init_db.sql'
