@@ -1,17 +1,19 @@
 \echo вывод всей таблицы роботов 
 SELECT *
-  FROM jaegers;
+  FROM jaegers
+ ORDER BY model_name;
 	
 \echo вывод только не уничтоженных роботов 
 SELECT * 
   FROM jaegers
- WHERE status = 'Exist';
+ WHERE status = 'Exist'
+ ORDER BY model_name;
    
 \echo отображение роботов серии Mark-1 и Mark-4
 SELECT *
   FROM jaegers 
- WHERE mark
-    IN ('Mark-1', 'Mark-4');
+ WHERE mark IN ('Mark-1', 'Mark-4')
+ ORDER BY model_name;
    
 \echo отображение всех роботов, кроме серии Mark-1 и Mark-4
 SELECT *
@@ -23,27 +25,29 @@ SELECT *
 SELECT * 
   FROM jaegers 
  WHERE launch = (SELECT MIN(launch) 
-                   FROM jaegers);
+                   FROM jaegers)
+ ORDER BY model_name;
    
 \echo отображение роботов, которые уничтожили больше всех kaiju
 SELECT * 
   FROM jaegers 
  WHERE kaiju_kill >= (SELECT MAX(kaiju_kill)
-                       FROM jaegers)
+                        FROM jaegers)
  ORDER BY kaiju_kill DESC;
    
 \echo отображение среднего веса и округление до трех знаков после запятой
 SELECT 
- ROUND(AVG(weight), 3) 
+ ROUND(AVG(weight), 3) AS average_weight 
   FROM jaegers;
 
-\echo увеличение на единицу  убитых kaiju у не уничтоженных роботов
+\echo увеличение на единицу убитых kaiju у не уничтоженных роботов
 UPDATE jaegers 
    SET kaiju_kill = kaiju_kill + 1
  WHERE status = 'Exist';
  
 SELECT *
-  FROM jaegers;
+  FROM jaegers
+ ORDER BY model_name;
    
 \echo удаление уничтоженных роботов 
 DELETE 
@@ -51,7 +55,5 @@ DELETE
  WHERE status = 'Destroyed';
 
 SELECT * 
-  FROM jaegers;
-
- 
- 
+  FROM jaegers
+ ORDER BY model_name;
